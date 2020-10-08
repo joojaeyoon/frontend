@@ -1,6 +1,6 @@
 <template>
   <b-card
-    class="shadow mb-2 card"
+    class="shadow mb-2 card article"
     v-bind:title="title"
     img-src="https://picsum.photos/600/300/?image=25"
     img-alt="Image"
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-.card {
+.article {
   cursor: pointer;
 }
 </style>

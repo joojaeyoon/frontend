@@ -5,8 +5,11 @@
         <i class="devicon-github-plain colored"></i> Github
       </a>
     </div>
-    <div class="mt-2 mb-5">
+    <div class="mt-2">
       © 2020 Jaeyoon Joo
+    </div>
+    <div class="mt-2 mb-5">
+      jaeyoon@jooz.dev
     </div>
   </div>
 </template>
