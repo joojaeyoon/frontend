@@ -4,6 +4,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Home from "../views/Home.vue";
 import Chat from "@/views/Chat.vue";
+import Upload from "@/views/Upload.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/chat",
     name: "Chat",
     component: Chat,
+  },
+  {
+    path: "/upload",
+    name: "upload",
+    component: Upload,
   },
 ];
 
