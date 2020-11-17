@@ -1,15 +1,15 @@
 <template>
-  <div class="container mt-5" style="max-width:80%">
-    <CardList />
+  <div class="container mt-5">
+    <PostList />
   </div>
 </template>
 
 <script>
-import CardList from "../components/CardList";
+import PostList from "../components/post/PostList";
 
 export default {
   components: {
-    CardList,
+    PostList,
   },
 };
 </script>

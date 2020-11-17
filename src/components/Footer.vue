@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class=" mt-5 pll2">
+    <div class=" mt-5">
       <a href="#" class="git">
         <i class="devicon-github-plain colored"></i> Github
       </a>
