@@ -1,27 +1,22 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import actions from "./actions";
+import getters from "./getters";
+import mutations from "./mutations";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 1,
+    base_url: "http://localhost:8080/api",
+    img_url: "http://localhost:8080/images",
+    post: {},
+    postDetail: {},
     axios: axios,
   },
-  // Mutations : 비동기 불가능 only 동기
-  mutations: {
-    increment(state, amount) {
-      state.count += amount;
-    },
-  },
-  // Action : 비동기 가능
-  actions: {
-    increment({ commit }, payload) {
-      setTimeout(() => {
-        commit("increment", payload.amount);
-      }, 1000);
-    },
-  },
+  getters: getters,
+  mutations: mutations,
+  actions: actions,
   modules: {},
 });
