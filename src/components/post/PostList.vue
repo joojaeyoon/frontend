@@ -1,6 +1,6 @@
 <template>
   <div class="text-left">
-    <Post v-for="item in items" :key="item.id" v-bind:data="item" />
+    <Post v-for="post in postList" :key="post.id" v-bind:post="post" />
   </div>
 </template>
 
@@ -12,19 +12,16 @@ export default {
     Post,
   },
   data() {
-    return {
-      items: [],
-    };
+    return {};
   },
   created() {
-    this.$store.state.axios
-      .get("http://localhost:8080/api/post?page=1&size=15&direction=ASC")
-      .then((res) => {
-        this.items = res.data.content;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // TODO 나중에 다른곳으로 옮기던가 하기
+    this.$store.dispatch("getPostList");
+  },
+  computed: {
+    postList() {
+      return this.$store.getters.post.content;
+    },
   },
 };
 </script>
