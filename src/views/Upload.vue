@@ -30,7 +30,8 @@
           가격은 숫자만 입력할 수 있습니다.
         </b-form-invalid-feedback>
         <div v-if="submitted && !$v.form.price.numeric"></div>
-        <ImagePreview />
+
+        <ImagePreview :setImages="setImages" />
 
         <label for="content">내용</label>
         <b-form-textarea
@@ -61,6 +62,7 @@ export default {
       form: {
         title: "",
         price: "0",
+        images: [],
         content: "",
       },
     };
@@ -68,7 +70,9 @@ export default {
   methods: {
     onSubmit() {
       this.submitted = true;
-      console.log(this.$v.form.$invalid);
+    },
+    setImages(files) {
+      this.form.images = files;
     },
   },
   validations: {

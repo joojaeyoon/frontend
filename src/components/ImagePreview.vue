@@ -8,9 +8,7 @@
           <div class="room-file-upload-example">
             <div class="room-file-notice-item room-file-upload-button">
               <div class="image-box">
-                <!-- <div class="image-profile">
-            <img :src="profileImage" />
-            </div>-->
+                <p>최대 5장</p>
                 <label for="file">사진 업로드</label>
                 <input
                   type="file"
@@ -62,6 +60,9 @@
 <script>
 // https://loy124.tistory.com/203
 export default {
+  props: {
+    setImages: Function,
+  },
   data() {
     return {
       files: [], //업로드용 파일
@@ -71,53 +72,36 @@ export default {
   },
   methods: {
     imageUpload() {
-      console.log(this.$refs.files.files);
-
-      // this.files = [...this.files, this.$refs.files.files];
-      //하나의 배열로 넣기
       let num = -1;
       for (let i = 0; i < this.$refs.files.files.length; i++) {
         this.files = [
           ...this.files,
-          //이미지 업로드
           {
-            //실제 파일
             file: this.$refs.files.files[i],
-            //이미지 프리뷰
             preview: URL.createObjectURL(this.$refs.files.files[i]),
-            //삭제및 관리를 위한 number
             number: i,
           },
         ];
         num = i;
-        //이미지 업로드용 프리뷰
-        // this.filesPreview = [
-        //   ...this.filesPreview,
-        //   { file: URL.createObjectURL(this.$refs.files.files[i]), number: i }
-        // ];
       }
-      this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
-      console.log(this.files);
-      // console.log(this.filesPreview);
+      this.uploadImageIndex = num + 1;
+
+      if (this.uploadImageIndex > 5) {
+        this.uploadImageIndex = 5;
+        this.files = this.files.slice(0, 5);
+        alert("최대 5장까지만 등록할 수 있습니다.");
+      }
+      this.setImages(this.files.map((f) => f.file));
     },
 
     imageAddUpload() {
-      console.log(this.$refs.files.files);
-
-      // this.files = [...this.files, this.$refs.files.files];
-      //하나의 배열로 넣기c
       let num = -1;
       for (let i = 0; i < this.$refs.files.files.length; i++) {
-        console.log(this.uploadImageIndex);
         this.files = [
           ...this.files,
-          //이미지 업로드
           {
-            //실제 파일
             file: this.$refs.files.files[i],
-            //이미지 프리뷰
             preview: URL.createObjectURL(this.$refs.files.files[i]),
-            //삭제및 관리를 위한 number
             number: i + this.uploadImageIndex,
           },
         ];
@@ -125,13 +109,18 @@ export default {
       }
       this.uploadImageIndex = this.uploadImageIndex + num + 1;
 
-      console.log(this.files);
-      // console.log(this.filesPreview);
+      if (this.uploadImageIndex > 5) {
+        this.uploadImageIndex = 5;
+        this.files = this.files.slice(0, 5);
+        alert("최대 5장까지만 등록할 수 있습니다.");
+        return;
+      }
+
+      this.setImages(this.files.map((f) => f.file));
     },
     fileDeleteButton(e) {
       const name = e.target.getAttribute("name");
       this.files = this.files.filter((data) => data.number !== Number(name));
-      // console.log(this.files);
     },
   },
 };
