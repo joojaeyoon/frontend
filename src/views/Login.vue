@@ -69,6 +69,7 @@ export default {
       }
 
       // TODO Login API Call
+      this.$store.dispatch("logIn", this.form);
     },
   },
   validations: {

@@ -9,26 +9,18 @@
     <div class="container card border-primary px-5 py-5 text-left">
       <b-form @submit.prevent="onSubmit" class="mb-5">
         <div class="form-group">
-          <label for="email">Email</label>
-          <b-input
-            v-model="form.email"
-            autocomplete="off"
-            class="form-control"
-            :state="!$v.form.email.$invalid"
-            id="email"
-          ></b-input>
-        </div>
-        <div class="form-group">
           <label for="username">Username</label>
           <b-input
             autocomplete="off"
             type="text"
             class="form-control"
             id="username"
-            :state="!$v.form.username.$invalid"
+            :state="submit ? submit && !$v.form.username.$invalid : null"
             v-model="form.username"
           ></b-input>
-          <b-form-invalid-feedback :state="validation">
+          <b-form-invalid-feedback
+            :state="submit ? submit && !$v.form.username.$invalid : null"
+          >
             사용자 이름은 5~12자 사이여야 합니다.
           </b-form-invalid-feedback>
         </div>
@@ -38,7 +30,7 @@
             type="password"
             class="form-control"
             id="password"
-            :state="!$v.form.password.$invalid"
+            :state="submit ? submit && !$v.form.password.$invalid : null"
             v-model="form.password"
           ></b-input>
         </div>
@@ -48,10 +40,12 @@
             type="password"
             class="form-control"
             id="password2"
-            :state="!$v.form.password2.$invalid"
+            :state="submit ? submit && !$v.form.password2.$invalid : null"
             v-model="form.password2"
           ></b-input>
-          <b-form-invalid-feedback :state="validation">
+          <b-form-invalid-feedback
+            :state="submit ? submit && !$v.form.password2.$invalid : null"
+          >
             입력한 패스워드와 같은 패스워드를 입력해야 합니다.
           </b-form-invalid-feedback>
         </div>
@@ -88,8 +82,8 @@ import {
 export default {
   data() {
     return {
+      submit: false,
       form: {
-        email: "",
         username: "",
         password: "",
         password2: "",
@@ -98,6 +92,8 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.submit = true;
+
       // TODO Check Valid values
       this.$v.$touch();
       if (this.$v.$invalid) {
@@ -105,14 +101,11 @@ export default {
       }
 
       // TODO Register API Call
+      this.$store.dispatch("register", this.form);
     },
   },
   validations: {
     form: {
-      email: {
-        required,
-        email,
-      },
       username: {
         required,
         minLength: minLength(4),
