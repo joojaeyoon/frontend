@@ -70,6 +70,7 @@ export default {
   methods: {
     onSubmit() {
       this.submitted = true;
+      this.$store.dispatch("uploadPost", this.form);
     },
     setImages(files) {
       this.form.images = files;

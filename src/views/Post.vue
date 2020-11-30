@@ -14,21 +14,6 @@
         :img-src="img.url"
       >
       </b-carousel-slide>
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
-
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
-
-      <!-- Slides with image only -->
-      <b-carousel-slide
-        img-src="https://picsum.photos/1024/480/?image=58"
-      ></b-carousel-slide>
     </b-carousel>
     <h1 class="post-title">
       {{ post.title }}
@@ -54,7 +39,6 @@ export default {
   },
   methods: {
     compare(date) {
-      console.log(date, new Date(date));
       return time.compare(new Date(date));
     },
   },
@@ -91,12 +75,19 @@ export default {
   margin: 0px auto;
   text-align: left;
 }
-.img-fluid {
+.carousel-inner {
   height: 480px !important;
 }
-.carousel-img {
+.img-fluid {
+  max-height: 480px !important;
+  max-width: 938px !important;
   width: auto !important;
-  margin: 0px auto;
+  height: auto !important;
+}
+.carousel-img {
+  width: 100% !important;
+  height: 100% !important;
+  text-align: center;
 }
 .post-title {
   margin-top: 15px;
