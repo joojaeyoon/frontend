@@ -15,6 +15,7 @@ export default new Vuex.Store({
     postDetail: {},
     axios: axios,
     accessToken: "",
+    loggedIn:false,
   },
   getters: getters,
   mutations: mutations,

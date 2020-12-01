@@ -1,4 +1,5 @@
 import cookie from "vue-cookies";
+import router from '@/router/index';
 
 export default {
   getPostList({ commit, state }) {
@@ -36,6 +37,9 @@ export default {
         state.axios.default.headers = {
           "X-AUTH-TOKEN": res.data.accessToken,
         };
+
+        commit("login");
+        router.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -43,6 +47,7 @@ export default {
   },
 
   register({ commit, state }, data) {
+    if(data.password!=data.password2) return;
     state.axios
       .post(`${state.base_url}/account`, {
         username: data.username,
@@ -53,6 +58,10 @@ export default {
         cookie.set("token", res.data.accessToken);
 
         // TODO Refresh Token 보관 처리
+
+        commit("login");
+        router.push("/");
+
       })
       .catch((err) => {
         console.log(err);
@@ -88,6 +97,9 @@ export default {
           })
           .then((res) => {
             console.log(res);
+
+            
+            router.push("/");
           })
           .catch((err) => {
             console.log(err);

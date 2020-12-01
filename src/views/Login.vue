@@ -62,13 +62,10 @@ export default {
   },
   methods: {
     onSubmit() {
-      // TODO Check Valid values
       this.$v.$touch();
       if (this.$v.$invalid) {
-        // invalid value
+        return;
       }
-
-      // TODO Login API Call
       this.$store.dispatch("logIn", this.form);
     },
   },

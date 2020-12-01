@@ -15,7 +15,6 @@ export default {
     return {};
   },
   created() {
-    // TODO 나중에 다른곳으로 옮기던가 하기
     this.$store.dispatch("getPostList");
   },
   computed: {

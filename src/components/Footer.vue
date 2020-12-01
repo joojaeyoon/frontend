@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class=" mt-5">
-      <a href="#" class="git">
+      <a href="https://github.com/joojaeyoon/backend" class="git">
         <i class="devicon-github-plain colored"></i> Github
       </a>
     </div>

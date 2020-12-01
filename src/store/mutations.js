@@ -5,4 +5,10 @@ export default {
   updatePostDetail(state, data) {
     state.postDetail = data;
   },
+  login(state){
+    state.loggedIn=true;
+  },
+  logout(state){
+    state.loggedIn=false;
+  }
 };

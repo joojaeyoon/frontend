@@ -94,13 +94,11 @@ export default {
     onSubmit() {
       this.submit = true;
 
-      // TODO Check Valid values
       this.$v.$touch();
       if (this.$v.$invalid) {
-        // invalid value
+        return;
       }
 
-      // TODO Register API Call
       this.$store.dispatch("register", this.form);
     },
   },

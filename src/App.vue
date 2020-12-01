@@ -12,8 +12,9 @@
 
       <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="/login">Sign In</b-nav-item>
+          <b-nav-item :href="!this.$store.getters.loggedIn ? '/login' : '/logout'">{{!this.$store.getters.loggedIn ? 'Login' : 'Logout'}}</b-nav-item>
           <b-nav-item href="/chat">Chat</b-nav-item>
+          <b-nav-item href="/upload">Upload</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -28,7 +29,7 @@ import Footer from "./components/Footer";
 export default {
   components: {
     Footer,
-  },
+  }
 };
 </script>
 
